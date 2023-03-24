@@ -153,11 +153,11 @@ function eraseBubble(t, x, y) {
 }
 
 function isSuperBubble(line, bubble) { 
+	let superBubble = false
 	if ( (line === 23 || line === 4) && (bubble === 1 || bubble === 26)) { 
-		return true;
+		superBubble = true;
 	}
-	
-	return false;
+	return superBubble;
 }
 
 function canAddBubble(line, bubble) { 
