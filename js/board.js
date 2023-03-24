@@ -352,15 +352,5 @@ function drawBoardDoor() {
 }
 function eraseBoardDoor() { 
 	let ctx = getBoardCanevasContext();
-	//ctx.translate(FRUITS_POSITION_X - (FRUITS_SIZE / 2), FRUITS_POSITION_Y - (FRUITS_SIZE / 2));
-	//ctx.save();
-	//ctx.globalCompositeOperation = "destination-out";
-	
-	//ctx.beginPath();
-	//ctx.translate(FRUITS_POSITION_X - (FRUITS_SIZE / 2), FRUITS_POSITION_Y - (FRUITS_SIZE / 2));
 	ctx.clearRect(255, 220, 40, 10);
-	//ctx.fill();
-	//ctx.closePath();
-	
-	//ctx.restore();
 }
