@@ -1,7 +1,7 @@
-var BOARD_CANVAS_CONTEXT = null;
+let BOARD_CANVAS_CONTEXT = null;
 
 function initBoard() { 
-	var canvas = document.getElementById('canvas-board');
+	let canvas = document.getElementById('canvas-board');
 	canvas.setAttribute('width', '550');
 	canvas.setAttribute('height', '550');
 	if (canvas.getContext) { 
@@ -14,7 +14,7 @@ function getBoardCanevasContext() {
 }
 
 function drawBoard(alternate) { 
-	var ctx = getBoardCanevasContext();
+	let ctx = getBoardCanevasContext();
 	
 	if (alternate && alternate === true) { 
 		ctx.strokeStyle = "#fff";
@@ -338,7 +338,7 @@ function drawBoard(alternate) {
 }
 
 function drawBoardDoor() { 
-	var ctx = getBoardCanevasContext();
+	let ctx = getBoardCanevasContext();
 	
 	ctx.strokeStyle = "white";
 	ctx.lineWidth = "5";
@@ -351,7 +351,7 @@ function drawBoardDoor() {
 	ctx.closePath();
 }
 function eraseBoardDoor() { 
-	var ctx = getBoardCanevasContext();
+	let ctx = getBoardCanevasContext();
 	//ctx.translate(FRUITS_POSITION_X - (FRUITS_SIZE / 2), FRUITS_POSITION_Y - (FRUITS_SIZE / 2));
 	//ctx.save();
 	//ctx.globalCompositeOperation = "destination-out";
