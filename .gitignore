@@ -1,2 +1,6 @@
 sonar-project.properties
 .scannerwork
+live-server
+live-server.cmd
+live-server.ps1
+node_modules/
