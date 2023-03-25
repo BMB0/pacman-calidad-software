@@ -284,11 +284,11 @@ function testGhostsPacman() {
 
 }
 function testGhostPacman(ghost) { 
-	eval('let positionX = GHOST_' + ghost.toUpperCase() + '_POSITION_X');
-	eval('let positionY = GHOST_' + ghost.toUpperCase() + '_POSITION_Y');
+	eval('var positionX = GHOST_' + ghost.toUpperCase() + '_POSITION_X');
+	eval('var positionY = GHOST_' + ghost.toUpperCase() + '_POSITION_Y');
 		
 	if (positionX <= PACMAN_POSITION_X + PACMAN_GHOST_GAP && positionX >= PACMAN_POSITION_X - PACMAN_GHOST_GAP && positionY <= PACMAN_POSITION_Y + PACMAN_GHOST_GAP && positionY >= PACMAN_POSITION_Y - PACMAN_GHOST_GAP ) { 
-		eval('let state = GHOST_' + ghost.toUpperCase() + '_STATE');
+		eval('var state = GHOST_' + ghost.toUpperCase() + '_STATE');
 		if (state === 0) { 
 			killPacman();
 		} else if (state === 1) { 
