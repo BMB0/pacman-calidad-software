@@ -114,7 +114,6 @@ function initHome() {
 	}
 	ctx.fillStyle = GHOST_INKY_COLOR;
 	drawHelperGhost(ctx, 25, 25, 1, 0, 0, 0);
-	
 	canvas = document.getElementById('canvas-presentation-clyde');
 	canvas.setAttribute('width', '50');
 	canvas.setAttribute('height', '50');
@@ -123,7 +122,6 @@ function initHome() {
 	}
 	ctx.fillStyle = GHOST_CLYDE_COLOR;
 	drawHelperGhost(ctx, 25, 25, 1, 0, 0, 0);
-	
 	startPresentation();
 }
 
@@ -136,7 +134,6 @@ function startPresentation() {
 	}
 }
 function stopPresentation() { 
-
 	if (HOME_PRESENTATION_TIMER != -1) { 
 		$("#presentation *").hide();
 		HOME_PRESENTATION_STATE = 0;
@@ -176,7 +173,6 @@ function nextSequencePresentation() {
 	if (HOME_PRESENTATION_STATE === 17) { 
 		clearInterval(HOME_PRESENTATION_TIMER);
 		HOME_PRESENTATION_TIMER = -1;
-		
 		startTrailer();
 	} else { 
 		HOME_PRESENTATION_STATE ++;
