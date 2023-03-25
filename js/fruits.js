@@ -154,17 +154,8 @@ function cancelFruit() {
 function eraseFruit() { 
 
 	let ctx = getFruitsCanevasContext();
-	//ctx.translate(FRUITS_POSITION_X - (FRUITS_SIZE / 2), FRUITS_POSITION_Y - (FRUITS_SIZE / 2));
-	//ctx.save();
-	//ctx.globalCompositeOperation = "destination-out";
-	
-	//ctx.beginPath();
-	//ctx.translate(FRUITS_POSITION_X - (FRUITS_SIZE / 2), FRUITS_POSITION_Y - (FRUITS_SIZE / 2));
 	ctx.clearRect(FRUITS_POSITION_X - (FRUITS_SIZE), FRUITS_POSITION_Y - (FRUITS_SIZE), FRUITS_SIZE * 2, FRUITS_SIZE * 2);
-	//ctx.fill();
-	//ctx.closePath();
-	
-	//ctx.restore();
+
 }
 
 function drawFruit(ctx, f, x, y, size) {  
