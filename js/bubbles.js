@@ -1,25 +1,25 @@
-var BUBBLES_ARRAY = new Array();
-var BUBBLES_CANVAS_CONTEXT = null;
-var BUBBLES_X_START = 30;
-var BUBBLES_X_END = 518;
-var BUBBLES_GAP = ((BUBBLES_X_END - BUBBLES_X_START) / 25);
-var BUBBLES_Y_START = 26;
-var BUBBLES_Y_END = 522;
-var BUBBLES_SIZE = 3;
-var BUBBLES_COUNTER = 0;
+let BUBBLES_ARRAY = new Array();
+let BUBBLES_CANVAS_CONTEXT = null;
+let BUBBLES_X_START = 30;
+let BUBBLES_X_END = 518;
+let BUBBLES_GAP = ((BUBBLES_X_END - BUBBLES_X_START) / 25);
+let BUBBLES_Y_START = 26;
+let BUBBLES_Y_END = 522;
+let BUBBLES_SIZE = 3;
+let BUBBLES_COUNTER = 0;
 
-var SUPER_BUBBLES = [];
-var SUPER_BUBBLES_SIZE = 8;
-var SUPER_BUBBLES_BLINK = false;
-var SUPER_BUBBLES_BLINK_STATE = 0;
-var SUPER_BUBBLES_BLINK_TIMER = -1;
-var SUPER_BUBBLES_BLINK_SPEED = 525;
+let SUPER_BUBBLES = [];
+let SUPER_BUBBLES_SIZE = 8;
+let SUPER_BUBBLES_BLINK = false;
+let SUPER_BUBBLES_BLINK_STATE = 0;
+let SUPER_BUBBLES_BLINK_TIMER = -1;
+let SUPER_BUBBLES_BLINK_SPEED = 525;
 
 function initBubbles() { 
 	BUBBLES_COUNTER = 0;
 	BUBBLES_ARRAY.length = 0;
 
-	var canvas = document.getElementById('canvas-bubbles');
+	let canvas = document.getElementById('canvas-bubbles');
 	canvas.setAttribute('width', '550');
 	canvas.setAttribute('height', '550');
 	if (canvas.getContext) { 
@@ -33,15 +33,15 @@ function getBubblesCanevasContext() {
 
 function drawBubbles() { 
 
-	var ctx = getBubblesCanevasContext();
+	let ctx = getBubblesCanevasContext();
 	ctx.fillStyle = "#dca5be";
 	
-	for (var line = 1, linemax = 29, i = 0, s = 0; line <= linemax; line ++) { 
-		var y = getYFromLine(line);
-		for (var x = BUBBLES_X_START, xmax = BUBBLES_X_END, bubble = 1 ; x < xmax; bubble ++, x += BUBBLES_GAP) { 
+	for (let line = 1, linemax = 29, i = 0, s = 0; line <= linemax; line ++) { 
+		let y = getYFromLine(line);
+		for (let x = BUBBLES_X_START, xmax = BUBBLES_X_END, bubble = 1 ; x < xmax; bubble ++, x += BUBBLES_GAP) { 
 			if (canAddBubble(line, bubble)) { 
-				var type = "";
-				var size = "";
+				let type = "";
+				let size = "";
 				if (isSuperBubble(line, bubble)) { 
 					type = "s";
 					size = SUPER_BUBBLES_SIZE;
@@ -83,21 +83,21 @@ function blinkSuperBubbles() {
 			SUPER_BUBBLES_BLINK_STATE = 0;
 		}
 		
-		var clone = SUPER_BUBBLES.slice(0);
+		let clone = SUPER_BUBBLES.slice(0);
 		
-		for (var i = 0, imax = clone.length; i < imax; i ++) { 
+		for (let i = 0, imax = clone.length; i < imax; i ++) { 
 		
-			var s = clone[i];
+			let s = clone[i];
 		
 			if ( s.split(";")[3] === "0" ) { 
 			
-				var sx = parseInt(s.split(";")[2].split(",")[0]);
-				var sy = parseInt(s.split(";")[2].split(",")[1]);
+				let sx = parseInt(s.split(";")[2].split(",")[0]);
+				let sy = parseInt(s.split(";")[2].split(",")[1]);
 			
 				if (SUPER_BUBBLES_BLINK_STATE === 1) { 
 					eraseBubble("s", sx, sy);
 				} else { 
-					var ctx = getBubblesCanevasContext();
+					let ctx = getBubblesCanevasContext();
 					ctx.fillStyle = "#dca5be";
 					ctx.beginPath();
 					ctx.arc(sx, sy, SUPER_BUBBLES_SIZE, 0, 2 * Math.PI, false);
@@ -112,10 +112,10 @@ function blinkSuperBubbles() {
 
 function setSuperBubbleOnXY( x, y, eat ) { 
 
-	for (var i = 0, imax = SUPER_BUBBLES.length; i < imax; i ++) { 
-		var bubbleParams = SUPER_BUBBLES[i].split( ";" );
-		var testX = parseInt(bubbleParams[2].split( "," )[0]);
-		var testY = parseInt(bubbleParams[2].split( "," )[1]);
+	for (let i = 0, imax = SUPER_BUBBLES.length; i < imax; i ++) { 
+		let bubbleParams = SUPER_BUBBLES[i].split( ";" );
+		let testX = parseInt(bubbleParams[2].split( "," )[0]);
+		let testY = parseInt(bubbleParams[2].split( "," )[1]);
 		if ( testX === x && testY === y ) { 
 			SUPER_BUBBLES[i] = SUPER_BUBBLES[i].substr( 0, SUPER_BUBBLES[i].length - 1 ) + "1";
 			break;
@@ -125,11 +125,11 @@ function setSuperBubbleOnXY( x, y, eat ) {
 
 function getBubbleOnXY( x, y ) { 
 
-	var bubble = null;
-	for (var i = 0, imax = BUBBLES_ARRAY.length; i < imax; i ++) { 
-		var bubbleParams = BUBBLES_ARRAY[i].split( ";" );
-		var testX = parseInt(bubbleParams[0].split( "," )[0]);
-		var testY = parseInt(bubbleParams[0].split( "," )[1]);
+	let bubble = null;
+	for (let i = 0, imax = BUBBLES_ARRAY.length; i < imax; i ++) { 
+		let bubbleParams = BUBBLES_ARRAY[i].split( ";" );
+		let testX = parseInt(bubbleParams[0].split( "," )[0]);
+		let testY = parseInt(bubbleParams[0].split( "," )[1]);
 		if ( testX === x && testY === y ) { 
 			bubble = BUBBLES_ARRAY[i];
 			break;
@@ -140,9 +140,9 @@ function getBubbleOnXY( x, y ) {
 
 function eraseBubble(t, x, y) { 
 
-	var ctx = getBubblesCanevasContext();
+	let ctx = getBubblesCanevasContext();
 
-	var size = "";
+	let size = "";
 	if (t === "s") { 
 		size = SUPER_BUBBLES_SIZE;
 	} else { 
@@ -153,52 +153,38 @@ function eraseBubble(t, x, y) {
 }
 
 function isSuperBubble(line, bubble) { 
+	let superBubble = false
 	if ( (line === 23 || line === 4) && (bubble === 1 || bubble === 26)) { 
-		return true;
+		superBubble = true;
 	}
-	
-	return false;
+	return superBubble;
 }
 
 function canAddBubble(line, bubble) { 
-	
-	if ( ( ( line >= 1 && line <= 4) || (line >= 9 && line <= 10) || (line >= 20 && line <= 22) || (line >= 26 && line <= 28) ) && (bubble === 13 || bubble === 14)) {
-		return false;
-	} else if ( ( (line >= 2 && line <= 4) || (line >= 21 && line <= 22) ) && ( (bubble >= 2 && bubble <= 5) || (bubble >= 7 && bubble <= 11) || (bubble >= 16 && bubble <= 20) || (bubble >= 22 && bubble <= 25) ) ) { 
-		return false;
-	} else if ( ( line >= 6 && line <= 7 ) && ( (bubble >= 2 && bubble <= 5) || (bubble >= 7 && bubble <= 8) || (bubble >= 10 && bubble <= 17) ||  (bubble >= 19 && bubble <= 20) || (bubble >= 22 && bubble <= 25) ) ) { 
-		return false;
-	} else if ( ( line === 8 ) && ( (bubble >= 7 && bubble <= 8) || (bubble >= 13 && bubble <= 14) || (bubble >= 19 && bubble <= 20) ) ) { 
-		return false;
-	} else if ( (( line >= 9 &&  line <= 19) ) && ( (bubble >= 1 && bubble <= 5) || (bubble >= 22 && bubble <= 26) ) ) { 
-		return false;
-	} else if ( ( line === 11 || line === 17 ) && ( (bubble >= 7 && bubble <= 20) ) ) { 
-		return false;
-	} else if ( ( line === 9 || line === 10 ) && ( (bubble === 12 || bubble === 15) ) ) { 
-		return false;
-	} else if ( ( (line >= 12 && line <= 13) || (line >= 15 && line <= 16) ) && ( (bubble === 9 || bubble === 18) ) ) { 
-		return false;
-	} else if ( line === 14 && ( (bubble >= 7 && bubble <= 9) || (bubble >= 18 && bubble <= 20) ) ) { 
-		return false;
-	} else if ( (line === 18 || line === 19) && ( bubble === 9 || bubble === 18) ) { 
-		return false;
-	} else if ( ( line >= 9 && line <= 10 ) && ( (bubble >= 7 && bubble <= 11) || (bubble >= 16 && bubble <= 20) ) ) { 
-		return false;
-	} else if ( (( line >= 11 && line <= 13) || (line >= 15 && line <= 19) ) && ( (bubble >= 7 && bubble <= 8) || (bubble >= 19 && bubble <= 20) ) ) { 
-		return false;
-	} else if ( ( (line >= 12 && line <= 16) || (line >= 18 && line <= 19) ) && ( bubble >= 10 && bubble <= 17) ) { 
-		return false;
-	} else if ( (line === 23) && ( (bubble >= 4 && bubble <= 5) || (bubble >= 22 && bubble <= 23) ) ) { 
-		return false;
-	} else if ( (line >= 24 && line <= 25) && ( (bubble >= 1 && bubble <= 2) || (bubble >= 4 && bubble <= 5) || (bubble >= 7 && bubble <= 8) || (bubble >= 10 && bubble <= 17) || (bubble >= 19 && bubble <= 20) || (bubble >= 22 && bubble <= 23) || (bubble >= 25 && bubble <= 26) ) ) { 
-		return false;
-	} else if ( (line === 26) && ( (bubble >= 7 && bubble <= 8) || (bubble >= 19 && bubble <= 20) ) ) { 
-		return false;
-	} else if ( (line >= 27 && line <= 28) && ( (bubble >= 2 && bubble <= 11) || (bubble >= 16 && bubble <= 25) ) ) { 
-		return false;
-	}
-	
-	return true;
+	let canAdd = true;
+	let bubbleCondition = ( ( line >= 1 && line <= 4) || (line >= 9 && line <= 10) || (line >= 20 && line <= 22) || (line >= 26 && line <= 28) ) && (bubble === 13 || bubble === 14)
+	let bubbleCondition1 = ( (line >= 2 && line <= 4) || (line >= 21 && line <= 22) ) && ( (bubble >= 2 && bubble <= 5) || (bubble >= 7 && bubble <= 11) || (bubble >= 16 && bubble <= 20) || (bubble >= 22 && bubble <= 25) )
+	let bubbleCondition2 = ( line >= 6 && line <= 7 ) && ( (bubble >= 2 && bubble <= 5) || (bubble >= 7 && bubble <= 8) || (bubble >= 10 && bubble <= 17) ||  (bubble >= 19 && bubble <= 20) || (bubble >= 22 && bubble <= 25) )
+	let bubbleCondition3 = ( line === 8 ) && ( (bubble >= 7 && bubble <= 8) || (bubble >= 13 && bubble <= 14) || (bubble >= 19 && bubble <= 20) )
+	let bubbleCondition4 = (( line >= 9 &&  line <= 19) ) && ( (bubble >= 1 && bubble <= 5) || (bubble >= 22 && bubble <= 26) )
+	let bubbleCondition5 = ( line === 11 || line === 17 ) && ( (bubble >= 7 && bubble <= 20) )
+	let bubbleCondition6 = ( line === 9 || line === 10 ) && ( (bubble === 12 || bubble === 15) )
+	let bubbleCondition7 = ( (line >= 12 && line <= 13) || (line >= 15 && line <= 16) ) && ( (bubble === 9 || bubble === 18) )
+	let bubbleCondition8 = line === 14 && ( (bubble >= 7 && bubble <= 9) || (bubble >= 18 && bubble <= 20) )
+	let bubbleCondition9 = (line === 18 || line === 19) && ( bubble === 9 || bubble === 18)
+	let bubbleCondition10 = ( line >= 9 && line <= 10 ) && ( (bubble >= 7 && bubble <= 11) || (bubble >= 16 && bubble <= 20) )
+	let bubbleCondition11 = (( line >= 11 && line <= 13) || (line >= 15 && line <= 19) ) && ( (bubble >= 7 && bubble <= 8) || (bubble >= 19 && bubble <= 20) )
+	let bubbleCondition12 = ( (line >= 12 && line <= 16) || (line >= 18 && line <= 19) ) && ( bubble >= 10 && bubble <= 17)
+	let bubbleCondition13 = (line === 23) && ( (bubble >= 4 && bubble <= 5) || (bubble >= 22 && bubble <= 23) )
+	let bubbleCondition14 = (line >= 24 && line <= 25) && ( (bubble >= 1 && bubble <= 2) || (bubble >= 4 && bubble <= 5) || (bubble >= 7 && bubble <= 8) || (bubble >= 10 && bubble <= 17) || (bubble >= 19 && bubble <= 20) || (bubble >= 22 && bubble <= 23) || (bubble >= 25 && bubble <= 26) )
+	let bubbleCondition15 = (line === 26) && ( (bubble >= 7 && bubble <= 8) || (bubble >= 19 && bubble <= 20) ) 
+	let bubbleCondition16 = (line >= 27 && line <= 28) && ( (bubble >= 2 && bubble <= 11) || (bubble >= 16 && bubble <= 25) )
+
+	let condition = bubbleCondition || bubbleCondition1 || bubbleCondition2 || bubbleCondition3 || bubbleCondition4 || bubbleCondition5 || bubbleCondition6 || bubbleCondition7 || bubbleCondition8 || bubbleCondition9 || bubbleCondition10 || bubbleCondition11 || bubbleCondition12 || bubbleCondition13 || bubbleCondition14 || bubbleCondition15 || bubbleCondition16
+	if (condition) {
+		canAdd = false;
+	} 
+	return canAdd;
 }
 
 function correctionX(x, bubble) { 
@@ -222,7 +208,7 @@ function correctionX(x, bubble) {
 }
 
 function getYFromLine(line) { 
-	var y = BUBBLES_Y_START;
+	let y = BUBBLES_Y_START;
 	if (line < 8) { 
 		y = BUBBLES_Y_START + ( (line - 1) * 18 );
 	} else if (line > 7 && line < 15) { 
