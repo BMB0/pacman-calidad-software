@@ -67,6 +67,7 @@ function initGame(newgame) {
 		ctx.closePath();
 		
 		x = 32;
+		y=16;
 		ctx.fillStyle = "#dca5be";
 		ctx.beginPath();
 		ctx.arc(x, y, 4, 0, 2 * Math.PI, false);
