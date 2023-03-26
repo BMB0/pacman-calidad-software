@@ -148,7 +148,7 @@ function cancelFruit() {
 	eraseFruit();
 	FRUIT_CANCEL_TIMER.cancel();
 	FRUIT_CANCEL_TIMER = null;
-	var TIME_FRUITS = 0;
+	TIME_FRUITS = 0;
 }
 
 function eraseFruit() { 
