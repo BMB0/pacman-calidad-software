@@ -34,7 +34,7 @@ let GROUP_SOUND = new buzz.group( [ EATING_SOUND, SIREN_SOUND, EAT_PILL_SOUND, E
 let EATING_SOUND_LOOPING = false;
 
 function isAvailableSound() { 
-	return !($("#sound").css("display") === "none");
+	return $("#sound").css("display") !== "none";
 }
 
 function loadAllSound() { 
