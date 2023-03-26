@@ -355,10 +355,10 @@ function isInTunnel(ghost) {
 
 
 function changeDirection(ghost) { 
-	eval('let direction = GHOST_' + ghost.toUpperCase() + '_DIRECTION');
-	eval('let state = GHOST_' + ghost.toUpperCase() + '_STATE');
-	eval('let ghostX = GHOST_' + ghost.toUpperCase() + '_POSITION_X');
-	eval('let ghostY = GHOST_' + ghost.toUpperCase() + '_POSITION_Y');
+	eval('var direction = GHOST_' + ghost.toUpperCase() + '_DIRECTION');
+	eval('var state = GHOST_' + ghost.toUpperCase() + '_STATE');
+	eval('var ghostX = GHOST_' + ghost.toUpperCase() + '_POSITION_X');
+	eval('var ghostY = GHOST_' + ghost.toUpperCase() + '_POSITION_Y');
 	
 	let tryDirection = oneDirection();
 	
@@ -485,11 +485,11 @@ function eraseGhosts() {
 
 function canMoveGhost(ghost, direction) { 
 	if (!direction) { 
-		eval('let direction = GHOST_' + ghost.toUpperCase() + '_DIRECTION');
+		eval('var direction = GHOST_' + ghost.toUpperCase() + '_DIRECTION');
 	}
-	eval('let positionX = GHOST_' + ghost.toUpperCase() + '_POSITION_X');
-	eval('let positionY = GHOST_' + ghost.toUpperCase() + '_POSITION_Y');
-	eval('let state = GHOST_' + ghost.toUpperCase() + '_STATE');
+	eval('var positionX = GHOST_' + ghost.toUpperCase() + '_POSITION_X');
+	eval('var positionY = GHOST_' + ghost.toUpperCase() + '_POSITION_Y');
+	eval('var state = GHOST_' + ghost.toUpperCase() + '_STATE');
 	
 	if (positionX === 276 && positionY === 204 && direction === 2 && state === 0) return false;
 
