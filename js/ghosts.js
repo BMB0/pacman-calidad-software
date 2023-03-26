@@ -630,7 +630,6 @@ function drawHelperGhost(ctx, x, y, d, b, s, a) {
 	} else if (d === 1) { 
 		eyesX = +2;
 	} else if (d === 2) { 
-		eyesY = 0;
 		eyesY = +5;
 	} else if (d === 3) { 
 		eyesX = -3;
