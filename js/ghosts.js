@@ -470,6 +470,9 @@ function reverseDirection(direction) {
 }
 
 function eraseGhost(ghost) { 
+
+	let ctx = getGhostCanevasContext(ghost);
+	
 	eval('ctx.clearRect(GHOST_' + ghost.toUpperCase() + '_POSITION_X - 17, GHOST_' + ghost.toUpperCase() + '_POSITION_Y - 17, 34, 34)');
 }
 function eraseGhosts() { 
@@ -627,6 +630,7 @@ function drawHelperGhost(ctx, x, y, d, b, s, a) {
 	} else if (d === 1) { 
 		eyesX = +2;
 	} else if (d === 2) { 
+		eyesY = 0;
 		eyesY = +5;
 	} else if (d === 3) { 
 		eyesX = -3;
