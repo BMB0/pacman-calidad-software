@@ -1,0 +1,9 @@
+.tabla-help {
+    margin: auto;
+    border: none;
+    border-spacing: 0;
+}
+
+.tabla-help td {
+    padding: 2px;
+}
