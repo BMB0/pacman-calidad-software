@@ -19,8 +19,8 @@
     }
 })(this, function() {
     "use strict";
-    var AudioContext = window.AudioContext || window.webkitAudioContext;
-    var buzz = {
+    let AudioContext = window.AudioContext || window.webkitAudioContext;
+    let buzz = {
         defaults: {
             autoplay: false,
             crossOrigin: null,
@@ -54,8 +54,8 @@
         },
         sound: function(src, options) {
             options = options || {};
-            var doc = options.document || buzz.defaults.document;
-            var pid = 0, events = [], eventsOnce = {}, supported = buzz.isSupported();
+            let doc = options.document || buzz.defaults.document;
+            let pid = 0, events = [], eventsOnce = {}, supported = buzz.isSupported();
             this.load = function() {
                 if (!supported) {
                     return this;
@@ -184,7 +184,7 @@
                 if (!supported) {
                     return this;
                 }
-                var set = true;
+                let set = true;
                 this.whenReady(function() {
                     if (set === true) {
                         set = false;
@@ -197,7 +197,7 @@
                 if (!supported) {
                     return null;
                 }
-                var time = Math.round(this.sound.currentTime * 100) / 100;
+                let time = Math.round(this.sound.currentTime * 100) / 100;
                 return isNaN(time) ? buzz.defaults.placeholder : time;
             };
             this.setPercent = function(percent) {
@@ -210,7 +210,7 @@
                 if (!supported) {
                     return null;
                 }
-                var percent = Math.round(buzz.toPercent(this.sound.currentTime, this.sound.duration));
+                let percent = Math.round(buzz.toPercent(this.sound.currentTime, this.sound.duration));
                 return isNaN(percent) ? buzz.defaults.placeholder : percent;
             };
             this.setSpeed = function(duration) {
@@ -230,7 +230,7 @@
                 if (!supported) {
                     return null;
                 }
-                var duration = Math.round(this.sound.duration * 100) / 100;
+                let duration = Math.round(this.sound.duration * 100) / 100;
                 return isNaN(duration) ? buzz.defaults.placeholder : duration;
             };
             this.getPlayed = function() {
@@ -353,11 +353,11 @@
                     return this;
                 }
                 types = types.split(" ");
-                var self = this, efunc = function(e) {
+                let self = this, efunc = function(e) {
                     func.call(self, e);
                 };
-                for (var t = 0; t < types.length; t++) {
-                    var type = types[t], idx = type;
+                for (let t = 0; t < types.length; t++) {
+                    let type = types[t], idx = type;
                     type = idx.split(".")[0];
                     events.push({
                         idx: idx,
@@ -372,10 +372,10 @@
                     return this;
                 }
                 types = types.split(" ");
-                for (var t = 0; t < types.length; t++) {
-                    var idx = types[t], type = idx.split(".")[0];
-                    for (var i = 0; i < events.length; i++) {
-                        var namespace = events[i].idx.split(".");
+                for (let t = 0; t < types.length; t++) {
+                    let idx = types[t], type = idx.split(".")[0];
+                    for (let i = 0; i < events.length; i++) {
+                        let namespace = events[i].idx.split(".");
                         if (events[i].idx === idx || namespace[1] && namespace[1] === idx.replace(".", "")) {
                             this.sound.removeEventListener(type, events[i].func, true);
                             events.splice(i, 1);
@@ -388,7 +388,7 @@
                 if (!supported) {
                     return this;
                 }
-                var self = this;
+                let self = this;
                 eventsOnce[pid++] = false;
                 this.bind(type + "." + pid, function() {
                     if (!eventsOnce[pid]) {
@@ -404,12 +404,12 @@
                     return this;
                 }
                 types = types.split(" ");
-                for (var t = 0; t < types.length; t++) {
-                    var idx = types[t];
-                    for (var i = 0; i < events.length; i++) {
-                        var eventType = events[i].idx.split(".");
+                for (let t = 0; t < types.length; t++) {
+                    let idx = types[t];
+                    for (let i = 0; i < events.length; i++) {
+                        let eventType = events[i].idx.split(".");
                         if (events[i].idx === idx || eventType[0] && eventType[0] === idx.replace(".", "")) {
-                            var evt = doc.createEvent("HTMLEvents");
+                            let evt = doc.createEvent("HTMLEvents");
                             evt.initEvent(eventType[0], false, true);
                             evt.originalEvent = detail;
                             this.sound.dispatchEvent(evt);
@@ -428,7 +428,7 @@
                 } else {
                     duration = duration || buzz.defaults.duration;
                 }
-                var from = this.volume, delay = duration / Math.abs(from - to), self = this, fadeToTimeout;
+                let from = this.volume, delay = duration / Math.abs(from - to), self = this, fadeToTimeout;
                 this.play();
                 function doFade() {
                     clearTimeout(fadeToTimeout);
@@ -475,7 +475,7 @@
                 if (!supported) {
                     return null;
                 }
-                var self = this;
+                let self = this;
                 if (this.sound.readyState === 0) {
                     this.bind("canplay.buzzwhenready", function() {
                         func.call(self);
@@ -485,7 +485,7 @@
                 }
             };
             this.addSource = function(src) {
-                var self = this, source = doc.createElement("source");
+                let self = this, source = doc.createElement("source");
                 source.src = src;
                 if (buzz.types[getExt(src)]) {
                     source.type = buzz.types[getExt(src)];
@@ -497,8 +497,8 @@
                 return source;
             };
             function timerangeToArray(timeRange) {
-                var array = [], length = timeRange.length - 1;
-                for (var i = 0; i <= length; i++) {
+                let array = [], length = timeRange.length - 1;
+                for (let i = 0; i <= length; i++) {
                     array.push({
                         start: timeRange.start(i),
                         end: timeRange.end(i)
@@ -510,7 +510,7 @@
                 return filename.split(".").pop();
             }
             if (supported && src) {
-                for (var i in buzz.defaults) {
+                for (let i in buzz.defaults) {
                     if (buzz.defaults.hasOwnProperty(i)) {
                         if (options[i] === undefined) {
                             options[i] = buzz.defaults[i];
@@ -522,20 +522,20 @@
                     this.sound.crossOrigin = options.crossOrigin;
                 }
                 if (options.webAudioApi) {
-                    var audioCtx = buzz.getAudioContext();
+                    let audioCtx = buzz.getAudioContext();
                     if (audioCtx) {
                         this.source = audioCtx.createMediaElementSource(this.sound);
                         this.source.connect(audioCtx.destination);
                     }
                 }
                 if (src instanceof Array) {
-                    for (var j in src) {
+                    for (let j in src) {
                         if (src.hasOwnProperty(j)) {
                             this.addSource(src[j]);
                         }
                     }
                 } else if (options.formats.length) {
-                    for (var k in options.formats) {
+                    for (let k in options.formats) {
                         if (options.formats.hasOwnProperty(k)) {
                             this.addSource(src + "." + options.formats[k]);
                         }
@@ -567,14 +567,14 @@
             };
             this.add = function(soundArray) {
                 soundArray = argsToArray(soundArray, arguments);
-                for (var a = 0; a < soundArray.length; a++) {
+                for (let a = 0; a < soundArray.length; a++) {
                     sounds.push(soundArray[a]);
                 }
             };
             this.remove = function(soundArray) {
                 soundArray = argsToArray(soundArray, arguments);
-                for (var a = 0; a < soundArray.length; a++) {
-                    for (var i = 0; i < sounds.length; i++) {
+                for (let a = 0; a < soundArray.length; a++) {
+                    for (let i = 0; i < sounds.length; i++) {
                         if (sounds[i] === soundArray[a]) {
                             sounds.splice(i, 1);
                             break;
@@ -675,8 +675,8 @@
                 return this;
             };
             function fn() {
-                var args = argsToArray(null, arguments), func = args.shift();
-                for (var i = 0; i < sounds.length; i++) {
+                let args = argsToArray(null, arguments), func = args.shift();
+                for (let i = 0; i < sounds.length; i++) {
                     sounds[i][func].apply(sounds[i], args);
                 }
             }
@@ -703,7 +703,7 @@
             return !!buzz.el.canPlayType && (buzz.el.canPlayType("audio/x-m4a;") || buzz.el.canPlayType("audio/aac;"));
         },
         toTimer: function(time, withHours) {
-            var h, m, s;
+            let h, m, s;
             h = Math.floor(time / 3600);
             h = isNaN(h) ? "--" : h >= 10 ? h : "0" + h;
             m = withHours ? Math.floor(time / 60 % 60) : Math.floor(time / 60);
@@ -713,7 +713,7 @@
             return withHours ? h + ":" + m + ":" + s : m + ":" + s;
         },
         fromTimer: function(time) {
-            var splits = time.toString().split(":");
+            let splits = time.toString().split(":");
             if (splits && splits.length === 3) {
                 time = parseInt(splits[0], 10) * 3600 + parseInt(splits[1], 10) * 60 + parseInt(splits[2], 10);
             }
@@ -723,11 +723,11 @@
             return time;
         },
         toPercent: function(value, total, decimal) {
-            var r = Math.pow(10, decimal || 0);
+            let r = Math.pow(10, decimal || 0);
             return Math.round(value * 100 / total * r) / r;
         },
         fromPercent: function(percent, total, decimal) {
-            var r = Math.pow(10, decimal || 0);
+            let r = Math.pow(10, decimal || 0);
             return Math.round(total / 100 * percent * r) / r;
         }
     };
