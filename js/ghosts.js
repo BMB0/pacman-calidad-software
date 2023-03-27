@@ -411,13 +411,11 @@ function changeDirection(ghost) {
 	} else { 
 		let axe = oneAxe();
 		tryDirection = getRightDirectionForHome(axe, ghostX, ghostY);
-		if (canMoveGhost(ghost, tryDirection) && (direction != tryDirection -2 && direction != tryDirection + 2)) { 
-		
-		} else { 
-			axe ++;
+		if (!(canMoveGhost(ghost, tryDirection) && (direction != tryDirection -2 && direction != tryDirection + 2))) { 
+		    axe ++;
 			if (axe > 2) axe = 1; 
 			tryDirection = getRightDirectionForHome(axe, ghostX, ghostY);
-		}
+		} 
 	}
 	
 	if (canMoveGhost(ghost, tryDirection) && (direction != tryDirection -2 && direction != tryDirection + 2)) { 
