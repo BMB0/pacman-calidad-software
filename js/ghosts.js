@@ -657,10 +657,7 @@ function drawHelperGhost(ctx, x, y, d, b, s, a) {
 		} else if (d === 2) { 
 			eyesY = +8;
 			eyesX = 2;
-		} else if (d === 3) { 
-			
-		}
-		
+		} 
 		ctx.fillStyle = "#0000fa";
 		ctx.beginPath();
 		ctx.arc((x - 15) + 18 + eyesX, (y + 16) - 18 + eyesY, 2, 0, Math.PI * 2, true);
