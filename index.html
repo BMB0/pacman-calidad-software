@@ -55,7 +55,6 @@
 			}
 			
 			$(document).ready(function() { 
-				//$.mobile.loading().hide();
 				loadAllSound();
 				
 				HELP_TIMER = setInterval('blinkHelp()', HELP_DELAY);
@@ -136,7 +135,6 @@
 						initGame(true);
 						
 					} else { 				
-						//if (!KEYDOWN) { 
 							KEYDOWN = true;
 							if (PACMAN_DEAD && !LOCK) { 
 								erasePacman();
@@ -161,11 +159,6 @@
 									movePacman(4);
 								}
 							} else if (e.keyCode === 68 && !PAUSE) { 
-								/*if ( $("#canvas-paths").css("display") === "none" ) { 
-									$("#canvas-paths").show();
-								} else { 
-									$("#canvas-paths").hide();
-								}*/
 							} else if (e.keyCode === 80 && !PACMAN_DEAD && !LOCK) { 
 								if (PAUSE) { 
 									resumeGame();
