@@ -423,13 +423,18 @@ function changeDirection(ghost) {
 	}
 }
 
+
+function oneDirectionComprobation(ghostX, ghostY){
+	return (ghostX === 276 && ghostY === 258)
+}
+
 function getRightDirectionForHome(axe, ghostX, ghostY) { 
 	let homeX = 276;
 	let homeY = 204;
 	
 	if (ghostY === 204 && ghostX === 276) { 	
 		return 2;
-	} else if (ghostX === 276 && ghostY === 258) { 
+	} else if (oneDirectionComprobation(ghostX, ghostY)) { 
 		return oneDirectionX();
 	} else { 
 		if (axe === 1) { 
