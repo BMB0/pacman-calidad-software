@@ -597,8 +597,7 @@ function resumeGhosts() {
 	resumeGhost('clyde');
 }
 
-function drawHelperGhost(ctx, x, y, d, b, s, a) { 
-	
+function drawHelperGhostComprobation(ctx, x, y, b, s){
 	if (s != -1) { 
 		ctx.beginPath();
 		ctx.moveTo((x - 15), (y + 16));
@@ -624,10 +623,49 @@ function drawHelperGhost(ctx, x, y, d, b, s, a) {
 		ctx.lineTo((x - 15), (y + 16) );
 		ctx.fill();
 	}
+}
+
+function drawHelperGhostPathComprobation(ctx, x, y, a){
+	if (a === 1) { 
+		ctx.fillStyle = "#ee2933";
+	} else { 
+		ctx.fillStyle = "#e5bed0";
+	}
+	ctx.beginPath();
+	ctx.arc((x - 15) + 18, (y + 13) - 17, 2, 0, Math.PI * 2, true);
+	ctx.fill();
+
+	ctx.beginPath();
+	ctx.arc((x - 15) + 10, (y + 13) - 17, 2, 0, Math.PI * 2, true);
+	ctx.fill();
+	
+	if (a === 1) { 
+		ctx.strokeStyle = "#ee2933";
+	} else { 
+		ctx.strokeStyle = "#e5bed0";
+	}
+	ctx.beginPath();
+	ctx.lineTo((x - 14.333) + 24, (y + 6));
+	
+	ctx.lineTo((x - 14.333) + 21, (y + 6) - 3);		
+	ctx.lineTo((x - 14.333) + 17, (y + 6));
+	
+	ctx.lineTo((x - 14.333) + 14, (y + 6) - 3);
+	ctx.lineTo((x - 14.333) + 10, (y + 6));
+	
+	ctx.lineTo((x - 14.333) + 7, (y + 6) - 3);
+	ctx.lineTo((x - 14.333) + 3, (y + 6));
+	ctx.stroke();
+}
+
+function drawHelperGhost(ctx, x, y, d, b, s, a) { 
+
+	drawHelperGhostComprobation(ctx, x, y, b, s);
 
 	let eyesX = 0;
 	let eyesY = 0;
-	
+
+
 	if (d === 4) { 
 		eyesY = -5;
 	} else if (d === 1) { 
@@ -672,35 +710,6 @@ function drawHelperGhost(ctx, x, y, d, b, s, a) {
 		ctx.arc((x - 15) + 6 + eyesX, (y + 16) - 18 + eyesY, 2, 0, Math.PI * 2, true);
 		ctx.fill();
 	} else { 
-		if (a === 1) { 
-			ctx.fillStyle = "#ee2933";
-		} else { 
-			ctx.fillStyle = "#e5bed0";
-		}
-		ctx.beginPath();
-		ctx.arc((x - 15) + 18, (y + 13) - 17, 2, 0, Math.PI * 2, true);
-		ctx.fill();
-
-		ctx.beginPath();
-		ctx.arc((x - 15) + 10, (y + 13) - 17, 2, 0, Math.PI * 2, true);
-		ctx.fill();
-		
-		if (a === 1) { 
-			ctx.strokeStyle = "#ee2933";
-		} else { 
-			ctx.strokeStyle = "#e5bed0";
-		}
-		ctx.beginPath();
-		ctx.lineTo((x - 14.333) + 24, (y + 6));
-		
-		ctx.lineTo((x - 14.333) + 21, (y + 6) - 3);		
-		ctx.lineTo((x - 14.333) + 17, (y + 6));
-		
-		ctx.lineTo((x - 14.333) + 14, (y + 6) - 3);
-		ctx.lineTo((x - 14.333) + 10, (y + 6));
-		
-		ctx.lineTo((x - 14.333) + 7, (y + 6) - 3);
-		ctx.lineTo((x - 14.333) + 3, (y + 6));
-		ctx.stroke();
+		drawHelperGhostPathComprobation(ctx, x, y, a)
 	}
 }
